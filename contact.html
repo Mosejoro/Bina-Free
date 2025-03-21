@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - BINA Online Examination System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="Get in touch with the BINA Online Examination System team. We're here to answer your questions and help you make the most of our platform."
+    />
+    <link rel="canonical" href="https://yourwebsite.com/contact.html" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta name="theme-color" content="#f7b500" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="exam.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      /* Additional CSS for contact page */
+      .contact-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .contact-info {
+        /* background-color: #f7b500; */
+        border-radius: 10px;
+        padding: 25px;
+        color: #333;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-info h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #000;
+      }
+
+      .contact-method {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        color: #000;
+      }
+
+      .contact-method p {
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .contact-form {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #555;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: "Inter", sans-serif;
+      }
+
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .btn-submit {
+        background-color: #f7b500;
+        color: #333;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        font-size: 1rem;
+      }
+
+      .btn-submit:hover {
+        background-color: #e6a800;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-link {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .faq-link a {
+        color: #f7b500;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .faq-link a:hover {
+        text-decoration: underline;
+      }
+
+      .office-hours {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+      }
+
+      .office-hours h3 {
+        margin-top: 0;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .hours-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .day-hours {
+        display: flex;
+        justify-content: start;
+        gap: 0.5rem;
+      }
+
+      .day {
+        font-weight: 600;
+      }
+
+      .breadcrumb {
+        display: flex;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+      }
+
+      .breadcrumb a {
+        color: #666;
+        text-decoration: none;
+      }
+
+      .breadcrumb a:hover {
+        color: #f7b500;
+      }
+
+      .breadcrumb .separator {
+        margin: 0 10px;
+        color: #999;
+      }
+
+      .breadcrumb .current {
+        color: #f7b500;
+        font-weight: 500;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #f7b500;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pro-badge">Basic Version</div>
+
+    <div class="upcoming-apps">
+      <p>More Apps Coming Soon</p>
+      <div class="app-images">
+        <img src="Bina JSec.png" alt="Upcoming App 1" class="app-preview" />
+        <img src="Bina Sec.png" alt="Upcoming App 2" class="app-preview" />
+        <img src="Bina SSec.png" alt="Upcoming App 3" class="app-preview" />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header">
+        <img src="logo.png" alt="BINA Logo" /><br />
+        <h1>Contact Us</h1>
+        <div class="version-banner">
+          <span class="basic-tag">FREE VERSION</span>
+          <a href="https://binapayment.vercel.app" class="upgrade-link">
+            <i class="fas fa-crown"></i> Upgrade to Pro
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-container animate__animated animate__fadeIn">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="separator">/</span>
+          <span class="current">Contact Us</span>
+        </div>
+
+        <p class="intro-text">
+          Have questions about BINA Online Examination System? We're here to
+          help! Choose the most convenient way to reach us below.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3><i class="fas fa-info-circle"></i> Get in Touch</h3>
+
+            <!-- Contact Button to Trigger Modal -->
+            <button onclick="openModal()" class="btn-open-modal">
+              <i class="fas fa-paper-plane"></i> Contact Us
+            </button>
+
+            <!-- Contact Form Modal -->
+            <div id="contactModal" class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3><i class="fas fa-paper-plane"></i> Send a Message</h3>
+
+                <!-- FormSubmit Form -->
+                <form
+                  id="contactForm"
+                  action="https://formsubmit.co/binativit@gmail.com"
+                  method="POST"
+                >
+                  <!-- Hidden input to prevent spam -->
+                  <input type="hidden" name="_captcha" value="false" />
+
+                  <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      class="form-control"
+                      required
+                    >
+                      <option value="">Select a subject</option>
+                      <option value="general">General Inquiry</option>
+                      <option value="support">Technical Support</option>
+                      <option value="billing">Billing Question</option>
+                      <option value="feedback">Feedback & Suggestions</option>
+                      <option value="partnership">
+                        Partnership Opportunity
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      class="form-control"
+                      placeholder="How can we help you?"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                  </button>
+                </form>
+
+                <!-- Success Message (Hidden by Default) -->
+                <div
+                  id="successMessage"
+                  style="display: none; text-align: center; color: green"
+                >
+                  <p>Message Sent! We’ll get back to you soon.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info">
+            <h3><i class="fas fa-phone"></i> Support Hours</h3>
+            <p>
+              Monday - Friday: 8:00 AM - 6:00 PM<br />
+              Closed on Saturdays, Sundays & Public Holidays
+              <br /><br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="logo.png" alt="BINA Logo" width="60" />
+            <h3>BINA Examination System</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li>
+                <a href="https://binapayment.vercel.app">Upgrade to Pro</a>
+              </li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-envelope"></i> bivativit@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +2348135900015</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 BINA Examination System. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <script>
+      // Form submission handling
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Here you would typically add code to send the form data
+          // For now, we'll just show an alert
+          alert("Thank you for your message! We will get back to you shortly.");
+          this.reset();
+        });
+
+      // Initialize FAQ toggles if they exist
+      const faqQuestions = document.querySelectorAll(".faq-question");
+      if (faqQuestions.length > 0) {
+        faqQuestions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const faqItem = question.parentElement;
+            faqItem.classList.toggle("active");
+          });
+        });
+      }
+    </script> -->
+    <script>
+      function openModal() {
+        const modal = document.getElementById("contactModal");
+        modal.style.display = "block";
+        setTimeout(() => modal.classList.add("show"), 10); // Slight delay for smooth transition
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("contactModal");
+        modal.classList.remove("show");
+        setTimeout(() => (modal.style.display = "none"), 300); // Allow time for animation before hiding
+      }
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Send form data via FormSubmit
+          fetch(this.action, {
+            method: "POST",
+            body: new FormData(this),
+          })
+            .then((response) => {
+              if (response.ok) {
+                document.getElementById("successMessage").style.display =
+                  "block";
+                setTimeout(() => closeModal(), 3000); // Close modal after 3 seconds
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const submitButton = document.querySelector(".btn-submit");
+          submitButton.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Sending...'; // Show loading spinner
+          submitButton.disabled = true;
+
+          // Send form data via FormSubmit
+          fetch(this.action, {
+            method: "POST",
+            body: new FormData(this),
+          })
+            .then((response) => {
+              if (response.ok) {
+                document.getElementById("successMessage").style.display =
+                  "block";
+
+                // Reset button after message is sent
+                submitButton.innerHTML =
+                  '<i class="fas fa-paper-plane"></i> Send Message';
+                submitButton.disabled = false;
+
+                // Close modal after 5 seconds
+                setTimeout(() => {
+                  document.getElementById("successMessage").style.display =
+                    "none";
+                  closeModal();
+                }, 5000);
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              submitButton.innerHTML =
+                '<i class="fas fa-paper-plane"></i> Send Message';
+              submitButton.disabled = false;
+            });
+        });
+    </script>
+  </body>
+</html>

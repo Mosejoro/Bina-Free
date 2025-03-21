@@ -1,0 +1,96 @@
+/* Standalone CSS file for BINA Assistant */
+.bina-assistant {
+  position: fixed;
+  bottom: 20px;
+  left: -9px;
+  z-index: 9999;
+}
+
+.bina-assistant .character-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bina-assistant .bina-character {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.bina-assistant .bina-character:hover {
+  transform: scale(1.05);
+}
+
+.bina-assistant .speech-bubble {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  background-color: white;
+  color: #333;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  max-width: 300px;
+  left: 70px;
+  bottom: 120px;
+  border: 2px solid #f7b500;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: opacity 0.5s ease;
+}
+
+.bina-assistant .speech-bubble::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  bottom: 20px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #f7b500 transparent transparent;
+}
+
+.bina-assistant .speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: -16px;
+  bottom: 20px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+
+@media (max-width: 768px) {
+  .bina-assistant {
+    bottom: 10px;
+    left: -5px;
+  }
+  .bina-assistant .bina-character {
+    width: 90px;
+  }
+
+  .bina-assistant .speech-bubble {
+    min-width: 150px;
+    max-width: 200px;
+    left: 100px;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bina-assistant .bina-character {
+    width: 70px;
+  }
+
+  .bina-assistant .speech-bubble {
+    min-width: 120px;
+    max-width: 160px;
+    left: 60px;
+    bottom: 80px;
+    font-size: 11px;
+    padding: 8px;
+  }
+}

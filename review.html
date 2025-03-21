@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BINA Exam Review - Check Your Answers</title>
+    <link rel="stylesheet" href="exam.css" />
+    <link rel="icon" href="Bida2.png" />
+    <meta
+      name="description"
+      content="Review your BINA exam answers and see where you can improve. Upgrade to Pro for detailed explanations and analytics."
+    />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta name="theme-color" content="#f7b500" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="logo.png" alt="BINA Logo" />
+        <h1>Exam Review</h1>
+        <div id="exam-info"></div>
+      </div>
+
+      <div class="review-header">
+        <h2>Review Your Answers</h2>
+        <div class="filter-options">
+          <button class="filter-btn active" data-filter="incorrect">
+            Incorrect Only
+          </button>
+          <button class="filter-btn" data-filter="all">All Questions</button>
+        </div>
+      </div>
+
+      <div id="review-content" class="review-container">
+        <div class="loading"></div>
+      </div>
+
+      <div class="pro-features-preview">
+        <h3><i class="fas fa-lock"></i> Pro Features Preview</h3>
+        <div class="pro-feature-cards">
+          <!-- <div class="pro-feature-card">
+            <i class="fas fa-lightbulb"></i>
+            <h4>Detailed Explanations</h4>
+            <p>
+              Get comprehensive explanations for each question to understand
+              concepts better.
+            </p>
+            <div class="feature-preview-locked">
+              <i class="fas fa-lock"></i> Soon in Pro
+            </div>
+          </div>
+          <div class="pro-feature-card">
+            <i class="fas fa-chart-pie"></i>
+            <h4>Performance Analytics</h4>
+            <p>
+              See detailed breakdowns of your performance by subject area and
+              topic.
+            </p>
+            <div class="feature-preview-locked">
+              <i class="fas fa-lock"></i> Soon in Pro
+            </div>
+          </div> -->
+          <!-- <div class="pro-feature-card">
+            <i class="fas fa-history"></i>
+            <h4>Exam History</h4>
+            <p>
+              Access your complete exam history and track improvement over time.
+            </p>
+            <div class="feature-preview-locked">
+              <i class="fas fa-lock"></i> Available in Pro
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <div
+        class="upgrade-banner"
+        id="basic-upgrade-banner"
+        style="display: none"
+      >
+        <h3>Want More?</h3>
+        <p>
+          You’ve come this far. Don’t stop now. Unlock unlimited access with
+          BINA Pro and make your success a reality!
+        </p>
+        <div class="upgrade-stats">
+          <div class="upgrade-stat">
+            <span class="stat-number">35%</span>
+            <span class="stat-label">Average Score Improvement</span>
+          </div>
+          <div class="upgrade-stat">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Practice Questions</span>
+          </div>
+          <div class="upgrade-stat">
+            <span class="stat-number">₦8,000</span>
+            <span class="stat-label">One-time Payment</span>
+          </div>
+        </div>
+        <a
+          href="https://binapayment.vercel.app"
+          class="btn-upgrade"
+          target="_blank"
+        >
+          Upgrade to Pro for Lifetime Access <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <button onclick="window.location.href='index.html'" class="submit-btn">
+        Back to Home
+      </button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get stored responses
+        const responsesJSON = localStorage.getItem("examResponses");
+        const subject = localStorage.getItem("examSubjectResult");
+        const cls = localStorage.getItem("examClassResult");
+        const isBasicVersion = localStorage.getItem("examVersion") === "basic";
+
+        // Show upgrade banner for basic version
+        if (isBasicVersion) {
+          document.getElementById("basic-upgrade-banner").style.display =
+            "block";
+        }
+
+        if (!responsesJSON) {
+          document.getElementById("review-content").innerHTML = `
+          <div class="error-message">
+            <p>No exam data found to review. Please take an exam first.</p>
+            <button onclick="window.location.href='index.html'" class="submit-btn">Go to Exams</button>
+          </div>
+        `;
+          return;
+        }
+
+        // Display exam info
+        document.getElementById("exam-info").innerHTML = `
+        <h3>Subject: ${subject ? subject.replace(/_/g, " ") : "Unknown"}</h3>
+        <h4>Class: ${cls ? "Primary " + cls.substring(1) : "Unknown"}</h4>
+        ${
+          isBasicVersion
+            ? '<div class="basic-version-badge">Basic Version Review</div>'
+            : ""
+        }
+      `;
+
+        // Parse the responses
+        const responses = JSON.parse(responsesJSON);
+
+        // Set up filter buttons
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            // Add active class to clicked button
+            this.classList.add("active");
+            // Apply filter
+            displayReviewContent(responses, this.dataset.filter);
+          });
+        });
+
+        // Initial display - show incorrect answers by default
+        displayReviewContent(responses, "incorrect");
+      });
+
+      function displayReviewContent(responses, filter) {
+        const reviewContent = document.getElementById("review-content");
+        reviewContent.innerHTML = "";
+        const isBasicVersion = localStorage.getItem("examVersion") === "basic";
+
+        // Filter responses based on selected filter
+        const filteredResponses =
+          filter === "all"
+            ? responses
+            : responses.filter((response) => !response.correct);
+
+        if (filteredResponses.length === 0) {
+          reviewContent.innerHTML = `
+          <div class="success-message">
+            <h3>Congratulations!</h3>
+            <p>You answered all questions correctly.</p>
+          </div>
+        `;
+          return;
+        }
+
+        // Display each question and answer
+        filteredResponses.forEach((response) => {
+          // Handle case where options might be missing
+          const options = response.options || {};
+          const questionText =
+            response.questionText || `Question ${response.questionNumber}`;
+
+          const questionHTML = `
+          <div class="question-review">
+            <p class="question-text"><strong>Question ${
+              response.questionNumber
+            }:</strong> ${questionText}</p>
+            <div class="options-container">
+              ${Object.entries(options)
+                .map(
+                  ([key, value]) => `
+                <div class="option-item ${
+                  key === response.selectedAnswer ? "selected-option" : ""
+                } ${key === response.correctAnswer ? "correct-option" : ""}">
+                  ${value}
+                  ${
+                    key === response.selectedAnswer
+                      ? `<span class="${
+                          response.correct
+                            ? "correct-answer"
+                            : "incorrect-answer"
+                        }">
+                      (Your Answer)
+                    </span>`
+                      : ""
+                  }
+                  ${
+                    key === response.correctAnswer &&
+                    key !== response.selectedAnswer
+                      ? '<span class="correct-answer">(Correct Answer)</span>'
+                      : ""
+                  }
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+            <div class="answer-status">
+              ${
+                response.correct
+                  ? '<p class="correct-answer">✓ Correct</p>'
+                  : `<p class="incorrect-answer">✗ Incorrect</p>`
+              }
+              ${isBasicVersion ? `` : ""}
+            </div>
+              <div class="explanation-preview">
+          <div class="explanation-content">
+            <p class="explanation-title">Want to understand this better?</p>
+            <p class="explanation-teaser">Upgrade to Pro to get a detailed explanation on this question.</p>
+          </div>
+        </div>
+          </div>
+        `;
+
+          reviewContent.innerHTML += questionHTML;
+        });
+
+        // Add performance summary for basic version
+        if (isBasicVersion) {
+          const correctCount = responses.filter((r) => r.correct).length;
+          const totalCount = responses.length;
+          const percentage = Math.round((correctCount / totalCount) * 100);
+
+          reviewContent.innerHTML += `
+            <div class="performance-summary-basic">
+              <h3>Basic Performance Summary</h3>
+              <div class="performance-stats">
+                <div class="performance-stat">
+                  <span class="stat-number">${correctCount}/${totalCount}</span>
+                  <span class="stat-label">Questions Correct</span>
+                </div>
+                <div class="performance-stat">
+                  <span class="stat-number">${percentage}%</span>
+                  <span class="stat-label">Score</span>
+                </div>
+              </div>
+             
+            </div>
+          `;
+        }
+      }
+    </script>
+  </body>
+</html>
