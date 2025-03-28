@@ -1,32 +1,51 @@
-"use strict";
+(function () {
+  "use strict";
 
-// 1. Prevent Text Copying
-document.addEventListener("copy", function (event) {
-  event.preventDefault();
-  alert("Copying is not allowed on this site! 🚫");
-});
-
-// 2. Detect Print Screen and Screenshots
-document.addEventListener("keydown", function (event) {
-  if (event.key === "PrintScreen") {
-    alert("Screenshots are not allowed! 🚫");
+  // 1️⃣ Block Right-Click (Prevents Inspect Element & Copy)
+  document.addEventListener("contextmenu", (event) => {
     event.preventDefault();
+    alert("Copying is disabled on this website!");
+  });
+
+  // 2️⃣ Block Copying (Ctrl+C, Ctrl+X, Ctrl+V, Cmd+C for Mac)
+  document.addEventListener("keydown", (event) => {
+    if (
+      (event.ctrlKey &&
+        (event.key === "c" || event.key === "x" || event.key === "v")) || // Windows Copy/Paste
+      (event.metaKey &&
+        (event.key === "c" || event.key === "x" || event.key === "v")) // Mac Copy/Paste
+    ) {
+      event.preventDefault();
+      alert("Copying is disabled on this website!");
+    }
+  });
+
+  // 3️⃣ Prevent Text Selection (So Users Can’t Highlight and Copy)
+  document.addEventListener("selectstart", (event) => {
+    event.preventDefault();
+    alert("Text selection is disabled!");
+  });
+
+  // 4️⃣ Detect Screenshot Attempt (Windows Snipping Tool & Mac Screenshot)
+  function detectScreenshot() {
+    alert("Screenshot detected! Please respect our content.");
   }
-});
 
-// 3. Prevent Screenshot Using Clipboard Monitoring
-setInterval(() => {
-  navigator.clipboard
-    .readText()
-    .then((text) => {
-      if (text.length > 0) {
-        alert("Unauthorized copying detected! 🚫");
-      }
-    })
-    .catch((err) => {
-      // Do nothing if clipboard access is blocked
-    });
-}, 2000);
+  // Windows: Detect 'PrtScn' Key (Print Screen)
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "PrintScreen") {
+      detectScreenshot();
+    }
+  });
 
-// 4. Disable Right-Click (To prevent inspect and copying)
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+  // Mac: Detect Screenshot Shortcuts (Cmd+Shift+3 and Cmd+Shift+4)
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.metaKey &&
+      event.shiftKey &&
+      (event.key === "3" || event.key === "4")
+    ) {
+      detectScreenshot();
+    }
+  });
+})();
