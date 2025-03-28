@@ -43,6 +43,10 @@
 
 /* Background Animation - Matching styles.css */
 body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   background: var(--background-color);
   color: var(--text-color);
   min-height: 100vh;
@@ -461,7 +465,7 @@ footer img:hover {
   border-left: 3px solid var(--primary-color);
 }
 .selection-form {
-  margin-top: 10rem;
+  margin-top: 4rem;
 }
 .selection-form h1 {
   text-align: center;
