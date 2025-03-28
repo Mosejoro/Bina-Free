@@ -164,11 +164,12 @@
           </select>
         </div>
 
-        <div class="form-group class">
+        <div class="form-group">
           <label for="class">Select Class:</label>
           <select id="class" class="form-control">
-            <option value="P6">Primary 6</option>
-            <!-- Other classes would be Pro only -->
+            <option value="Pry">Primary</option>
+            <option value="Jss">Junior Secondary</option>
+            <option value="Sss">Senior Secondary</option>
           </select>
         </div>
 
@@ -235,17 +236,63 @@
 
         // Initialize BINA character messages
         initBinaMessages();
+
+        // Initialize subjects dropdown on page load
+        updateSubjects();
       });
 
-      // Timetable - Limited for basic version
-      const timetable = {
-        Day1: {
-          P6: [
-            "Mathematics_Trial",
-            "English_Trial",
-            "GNS_Trial",
-            "National_Value",
-          ], // Limited subjects in basic version
+      // Subject lists for each educational level
+      const subjectsByClass = {
+        Pry: [
+          "Mathematics",
+          "Basic Science & Technology",
+          "English",
+          "National Values Education",
+          "Verbal Aptitude",
+          "Quantitative & Vocational Aptitude",
+        ],
+        Jss: [
+          "Mathematics",
+          "English Language",
+          "Basic Science",
+          "CRS",
+          "Business Studies",
+          "Local Language(Yoruba, Igbo, Hausa)",
+          "National Value",
+          "French",
+          "History",
+          "Cultural & Creative Arts",
+        ],
+        Sss: {
+          "Core Subjects": [
+            "English Language",
+            "Mathematics",
+            "Civic Education",
+          ],
+          "Science Stream": [
+            "Physics",
+            "Chemistry",
+            "Biology",
+            "Further Mathematics",
+            "Agricultural Science",
+            "Geography",
+          ],
+          "Arts Stream": [
+            "Literature-in-English",
+            "Government",
+            "History",
+            "Christian Religious Studies (CRS)",
+            "French",
+            "Nigerian Languages (Yoruba, Igbo, Hausa)",
+          ],
+          "Commerce Stream": [
+            "Economics",
+            "Commerce",
+            "Financial Accounting",
+            "Office Practice",
+            "Insurance",
+            "Marketing",
+          ],
         },
       };
 
@@ -259,15 +306,38 @@
         let cls = document.getElementById("class").value;
         let subjectsDropdown = document.getElementById("subject");
 
+        // Clear existing options
         subjectsDropdown.innerHTML = "";
 
-        if (timetable[day] && timetable[day][cls]) {
-          timetable[day][cls].forEach((subject) => {
+        if (cls === "Pry" || cls === "Jss") {
+          // For Primary and Junior Secondary, just list the subjects
+          const subjects = subjectsByClass[cls];
+          subjects.forEach((subject) => {
             let option = document.createElement("option");
-            option.value = subject;
-            option.textContent = subject.replace(/_/g, " ");
+            option.value = subject.replace(/ /g, "_");
+            option.textContent = subject;
             subjectsDropdown.appendChild(option);
           });
+        } else if (cls === "Sss") {
+          // For Senior Secondary, group by streams
+          const streams = subjectsByClass[cls];
+
+          // Add each stream as an optgroup
+          for (const [streamName, subjects] of Object.entries(streams)) {
+            // Create a group label
+            let optgroup = document.createElement("optgroup");
+            optgroup.label = streamName;
+
+            // Add subjects to the group
+            subjects.forEach((subject) => {
+              let option = document.createElement("option");
+              option.value = subject.replace(/ /g, "_");
+              option.textContent = subject;
+              optgroup.appendChild(option);
+            });
+
+            subjectsDropdown.appendChild(optgroup);
+          }
         }
       }
 
@@ -330,9 +400,6 @@
             messageElement.textContent = binaMessages[currentMessageIndex];
           });
       }
-
-      // Initialize subjects dropdown
-      updateSubjects();
     </script>
     <script>
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
