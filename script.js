@@ -110,12 +110,11 @@ function displayQuestions(data, subject, cls) {
       B: row[2],
       C: row[3],
       D: row[4],
-      E: row[5],
     };
-    const correctAnswer = row[6];
+    const correctAnswer = row[5];
 
     // Shuffle the options while maintaining the correct mapping
-    const optionKeys = ["A", "B", "C", "D", "E"];
+    const optionKeys = ["A", "B", "C", "D"];
     const shuffledOptionKeys = shuffleArray([...optionKeys]);
 
     // Create shuffled options object
