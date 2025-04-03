@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://binaexams.com/sitemap.xml
+ Sitemap: https://bina-free.vercel.app/sitemap.xml
