@@ -148,7 +148,6 @@
         // Display exam info
         document.getElementById("exam-info").innerHTML = `
         <h3>Subject: ${subject ? subject.replace(/_/g, " ") : "Unknown"}</h3>
-        <h4>Class: ${cls ? "Primary " + cls.substring(1) : "Unknown"}</h4>
         ${
           isBasicVersion
             ? '<div class="basic-version-badge">Basic Version Review</div>'

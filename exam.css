@@ -1476,3 +1476,8 @@ a:hover {
     flex-wrap: wrap;
   }
 }
+.center {
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 1rem;
+}

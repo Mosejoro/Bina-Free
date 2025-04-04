@@ -16,10 +16,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7251734087164190"
-     crossorigin="anonymous"></script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7251734087164190"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  
+
   <body>
     <div class="container">
       <div
@@ -67,14 +70,7 @@
         // Display exam info
         document.getElementById("exam-info").innerHTML = `
           <h1>Exam Details</h1>
-          <h3 class="head">Student: ${userName}</h3>
-          <h3 class="head">Subject: ${subject.replace(/_/g, " ")}</h3>
-          ${
-            isBasicVersion
-              ? '<div class="basic-version-badge">Free Version - Limited Features</div>'
-              : ""
-          }
-          <h2 class="Warn">IF THIS INFORMATION IS WRONG <a class="btn-link" href="index.html"> Go Back</a></h2>
+         
         `;
 
         // Auto fetch questions
