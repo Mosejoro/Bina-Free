@@ -263,8 +263,8 @@ footer img:hover {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: var(--primary-color);
-  color: var(--secondary-color);
+  background: var(--secondary-color);
+  color: var(--background-color);
   border-radius: 30px;
   padding: 8px 16px;
   display: flex;
@@ -277,6 +277,8 @@ footer img:hover {
 
 .timer-icon {
   opacity: 0.9;
+  color: var(--background-color);
+  font-weight: 900;
 }
 
 #time-remaining {
