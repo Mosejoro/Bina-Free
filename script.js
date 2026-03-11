@@ -85,7 +85,7 @@ function displayQuestions(data, subject, cls) {
   const limitedQuestionRows = shuffledQuestionRows.slice(0, questionLimit);
 
   // Get username from localStorage
-  const userName = localStorage.getItem("userName") || "Guest User";
+  const userName = localStorage.getItem("userName") || "User";
 
   // Add exam metadata section
   questionsDiv.innerHTML = `
@@ -173,7 +173,7 @@ function displayQuestions(data, subject, cls) {
         <p>Using Basic Version (10 questions only)</p>
         <p>Upgrade to Pro for 20 questions, all subjects, and detailed analytics!</p>
         <a href="https://binapayment.vercel.app" class="btn-upgrade-small" target="_blank">
-          Upgrade to Pro (₦8,000 One-Off Payment) <i class="fas fa-arrow-right"></i>
+          Upgrade to Pro (₦5,000 One-Off Payment) <i class="fas fa-arrow-right"></i>
         </a>
       </div>
       <button onclick="checkAnswers()" class="submit-btn">Submit Exam</button>
@@ -287,7 +287,7 @@ function checkAnswers() {
   }
 
   // Get username from localStorage instead of form inputs
-  const username = localStorage.getItem("userName") || "Guest User";
+  const username = localStorage.getItem("userName") || "User";
 
   // Proceed with calculating score and submitting
   let score = 0;
